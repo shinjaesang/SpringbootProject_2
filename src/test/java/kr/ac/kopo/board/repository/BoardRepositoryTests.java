@@ -42,4 +42,11 @@ public class BoardRepositoryTests {
         System.out.println(board);
         System.out.println(board.getWriter());
     }
+
+    @Test
+    public void testReadWithWriter(){
+        Object result = boardRepository.getBoardWithWriter(10L);
+        Object[] arr = (Object[])result;
+        System.out.println(result);
+    }
 }
