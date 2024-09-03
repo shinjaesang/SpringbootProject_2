@@ -17,6 +17,6 @@ public class Board extends BaseEntity{
     private String title;
     private String content;
 
-    @ManyToOne//다 대 일 관계에 외래키 설정을 위함
+    @ManyToOne(fetch = FetchType.LAZY)//다 대 일 관계에 외래키 설정을 위함
     private Member writer;//Foreign key 설정(참조무결성 유지)
 }
