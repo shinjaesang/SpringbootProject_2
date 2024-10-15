@@ -4,13 +4,13 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
     <th:block th:fragment="content">
         <h1 class="mt-4">Modify Page</h1>
-        <form action="/guestbook/modify" method="post">
+        <form action="/board/modify" method="post">
             <input type="hidden" name="page" th:value="${requestDTO.page}">
             <input type="hidden" name="type" th:value="${requestDTO.type}">
             <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
             <div class="form-group">
-                <label>Gno:</label>
-                <input type="text" name="gno" class="form-control" th:value="${dto.gno}" readonly>
+                <label>Bno:</label>
+                <input type="text" name="bno" class="form-control" th:value="${dto.bno}" readonly>
             </div>
             <div class="form-group">
                 <label>Title:</label>
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label>Writer:</label>
-                <input type="text" name="writer" class="form-control" th:value="${dto.writer}" readonly>
+                <input type="text" name="writer" class="form-control" th:value="${dto.writerName}" readonly>
             </div>
             <div class="form-group">
                 <label>RegDate:</label>
@@ -33,7 +33,6 @@
                 <input type="text" name="modDate" class="form-control" th:value="${dto.modDate}" readonly>
             </div>
         </form>
-
         <button type="button" class="btn btn-primary modifyBtn">Modify</button>
 
         <button type="button" class="btn btn-info form-group listBtn">List</button>
@@ -44,20 +43,18 @@
 <script th:inline="javascript">
     let actionForm = $("form");
     $(".removeBtn").click(function () {
-        actionForm.attr("action", "/guestbook/remove")
+        actionForm.attr("action", "/board/remove")
             .attr("method", "post")
-        actionForm.submit()
+            .submit()
     });
 
-    $(".modifyBtn").click(function (){
-        actionForm
-            .attr("action", "/guestbook/modify")
+    $(".modifyBtn").click(function () {
+        actionForm.attr("action", "/board/modify")
             .attr("method", "post")
-            .submit();
+            .submit()
     });
 
-    $(".listBtn").click(function (){
-
+    $(".listBtn").click(function () {
         var page = $("input[name='page']");
         var type = $("input[name='type']");
         var keyword = $("input[name='keyword']");
@@ -68,10 +65,9 @@
         actionForm.append(type);
         actionForm.append(keyword);
 
-        actionForm
-            .attr("action", "/guestbook/list")
+        actionForm.attr("action", "/board/list")
             .attr("method", "get")
-            .submit();
+            .submit()
     });
 </script>
 </html>
