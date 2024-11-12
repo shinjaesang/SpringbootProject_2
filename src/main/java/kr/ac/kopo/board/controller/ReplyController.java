@@ -1,6 +1,5 @@
 package kr.ac.kopo.board.controller;
 
-
 import kr.ac.kopo.board.dto.ReplyDTO;
 import kr.ac.kopo.board.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +26,19 @@ public class ReplyController {
     public ResponseEntity<Long> register(@RequestBody ReplyDTO replyDTO){
         Long rno = replyService.register(replyDTO);
         return new ResponseEntity<>(rno, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{rno}")
+    public ResponseEntity<String> remove(@PathVariable("rno")  Long rno){
+
+        replyService.remove(rno);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @PutMapping("/{rno}")
+    public ResponseEntity<String> modify(@RequestBody ReplyDTO replyDTO){
+        replyService.modify(replyDTO);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }
